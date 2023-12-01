@@ -21,13 +21,13 @@ public class Drive4Time extends CommandBase {
  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-      m_driveTrain.drive(m_drive, m_turn);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    }
+    m_driveTrain.drive(m_drive, m_turn);
+  }
 
 
   // Called once the command ends or is interrupted.

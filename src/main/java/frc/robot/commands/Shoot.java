@@ -56,9 +56,9 @@ public class Shoot extends CommandBase {
     @Override
     public void execute() {
         // throttle range -1 to 1 convert to 1/3 to 3/3
-        m_shooter.driveShooter(
-           ((-RobotContainer.getInstance().getJoystick().getThrottle() + 1 ) + 1) / 3);
-    }
+        m_shooter.driveShooter(0.6);
+     //       ((-RobotContainer.getInstance().getJoystick().getThrottle() + 1 ) + 1) / 3);
+        }
 
     // Called once the command ends or is interrupted.
     @Override
