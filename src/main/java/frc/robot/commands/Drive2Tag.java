@@ -20,10 +20,10 @@ public class Drive2Tag extends CommandBase {
   /** Creates a new Drive2Tag. */
   private final DriveTrain m_driveTrain;
 
-  PhotonCamera camera = new PhotonCamera("usb2"); // %rod
+  PhotonCamera camera = new PhotonCamera("usb2"); 
   double turnLimit = 0.5;
   private double m_fwdLimit;
-  double startTime;
+  double tagArea;
 
   public Drive2Tag(DriveTrain subsystem, double fwdLimit) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -35,14 +35,13 @@ public class Drive2Tag extends CommandBase {
 
   double fwdDrive;
   int fidNumber;
-  double impactDrive = 0.35;  // set this to the desired tote impact speed.
+ // double impactDrive = 0.35;  // set this to the desired tote impact speed.
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-//    camera.setDriverMode(false);
+    tagArea = 0;
     camera.setPipelineIndex(0); // pipeline 0=bucket
-    startTime = 0;
     fwdDrive = m_fwdLimit; // start at selected speed to start.
     fidNumber = (int)SmartDashboard.getNumber( "Fiducial #", 2);  // %r6
  //   SmartDashboard.pu.putNumber("fid1", fidNumber);
@@ -75,31 +74,13 @@ public class Drive2Tag extends CommandBase {
           // turnDrive = 0;
 
           // the area will indicate how close we are to target. range about .1 to 40.
-          // for Arducam uc-844 the area is 7% at 1 foot and 30% at 2 feet
-          double area = target.getArea(); // check up/down position
-
-          // reduce speed as the Tag gets bigger
-          area /= 7; // This will reduce drive to zero at 2 feet.
-          fwdDrive = 1 - area; // reduce drive as we approach 2 feet
-
-          if (fwdDrive > m_fwdLimit) // limit the drive to +/- 0.5
-            fwdDrive = m_fwdLimit;
-          if (Math.abs(fwdDrive) < impactDrive) // if drive is less than impact speed
-          {
-            fwdDrive = impactDrive; // maintain impact speed
-            if (startTime == 0)
-              startTime = edu.wpi.first.wpilibj.Timer.getFPGATimestamp();
-          }
+          // for HD-3000 camera the area is 10% at 2 feet
+          tagArea = target.getArea(); // check size of tag
         }
       }
     }
-    // needed the following, since we lose target during impact.
-    if (startTime > 0)
-      m_driveTrain.drive(impactDrive, 0);
-    else
-      m_driveTrain.drive(fwdDrive, turnDrive);
+    m_driveTrain.drive(fwdDrive, turnDrive);
   }
-
 
   // Called once the command ends or is interrupted.
   @Override
@@ -110,9 +91,8 @@ public class Drive2Tag extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (startTime > 0)  // impact timer initiated
-      if ((edu.wpi.first.wpilibj.Timer.getFPGATimestamp() - startTime) > 2) 
-        return true;  // stop after 2 seconds
+    if (tagArea > 10)
+       return true;  // stop when close to tag
 
     return false;
   }
