@@ -1,4 +1,5 @@
 // bunnybot2023  Team 3711
+// 1-dec fixed shooter drive(speed) to 0.6
 // 1-dec implemented autosequence1 to capture bunny
 // 30-nov tried GitHub> Init Repository>
 // 29-nov changed sweeper to 30:1 set speeds to 0.6
