@@ -1,4 +1,5 @@
 // bunnybot2023  Team 3711
+// 3-dec added auto modes.  added pigeon-gyro (commented out)
 // 2-dec save from rod#6 test
 // 1-dec fixed shooter drive(speed) to 0.6
 // 1-dec implemented autosequence1 to capture bunny
