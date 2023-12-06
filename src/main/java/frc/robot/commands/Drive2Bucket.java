@@ -59,7 +59,7 @@ public class Drive2Bucket extends CommandBase {
       double yaw = target.getYaw();
       // the yaw can vary from -25 to +25 degrees.
       // make turnDrive vary from -2.5 to 2.5
-      turnDrive = yaw / 10;
+      turnDrive = yaw / 15; //10;
       if (turnDrive > turnLimit)// limit the drive to +/- 0.5
         turnDrive = turnLimit;
       else if (turnDrive < -turnLimit)
@@ -83,7 +83,7 @@ public class Drive2Bucket extends CommandBase {
      //   fwdDrive = 0.0; // stop
 
     }
-    m_driveTrain.drive(fwdDrive, turnDrive);
+    m_driveTrain.drive(-fwdDrive, turnDrive);
   }
 
 

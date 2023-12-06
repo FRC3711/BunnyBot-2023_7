@@ -30,11 +30,11 @@ public class AutoSequence1 extends SequentialCommandGroup {
                 new Drive4Time(m_driveSubsystem, .4, 0).withTimeout(1.8), // drive into tote, catch bunny
                 new Sweep(m_sweeperSubsystem, -0.6).withTimeout(1.8) // intake bunny if it fell in front
             ),
-            new Drive4Time(m_driveSubsystem, -0.6, 0.0).withTimeout(3.0), // drive back toward home
-            new Drive4Time(m_driveSubsystem, 0, 0.6).withTimeout(1.2), // turn 180
-            new Drive4Time(m_driveSubsystem, 0.3, 0.0).withTimeout(2), // drive into home zone
-            new Sweep(m_sweeperSubsystem, 0.6).withTimeout(1), // discharge bunny
-            new Drive4Time(m_driveSubsystem, -0.4, 0.0).withTimeout(2) // back away from bunny
+            new Drive4Time(m_driveSubsystem, -0.7, 0.0).withTimeout(3.0), // drive back toward home
+            new Drive4Time(m_driveSubsystem, 0, 0.7).withTimeout(1.5), // turn 180
+            new Drive4Time(m_driveSubsystem, 0.5, 0.0).withTimeout(2), // drive into home zone
+            new Sweep(m_sweeperSubsystem, 0.6).withTimeout(2), // discharge bunny
+            new Drive4Time(m_driveSubsystem, -0.5, 0.0).withTimeout(2) // back away from bunny
 
         )
 

@@ -91,7 +91,7 @@ public class Drive2Tag extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (tagArea > 10)
+    if (tagArea > 5)
        return true;  // stop when close to tag
 
     return false;
