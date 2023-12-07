@@ -23,7 +23,7 @@ public class Drive2Bucket extends CommandBase {
   double turnLimit = 0.7;
   private double m_fwdLimit;
   private DigitalOutput LEDRing;
-
+  int fidNumber;
 
   public Drive2Bucket(DriveTrain subsystem, double fwdLimit) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -35,6 +35,7 @@ public class Drive2Bucket extends CommandBase {
   }
 
   double fwdDrive;
+  double pitchTarget;
 
   // Called when the command is initially scheduled.
   @Override
@@ -42,6 +43,10 @@ public class Drive2Bucket extends CommandBase {
   //  camera.setDriverMode(false);
     camera.setPipelineIndex(0); // pipeline 0=bucket, 1=tag targeting
     LEDRing.set(true);
+    fidNumber = (int)SmartDashboard.getNumber( "Tag #", 2);  // %r6
+    pitchTarget = -4;  // 4 degrees below center for Blue bucket.
+    if (fidNumber >= 3)
+      pitchTarget += 4;   // Red bucket 4 degrees higher than blue
   //  fwdDrive = m_fwdLimit; // start at selected speed to start.
   }
 
@@ -70,9 +75,10 @@ public class Drive2Bucket extends CommandBase {
       // the vertical position will indicate how close we are to target. range for .1 to 40.
       double pitch = target.getPitch(); // check up/down position
 
+      pitch -= pitchTarget;  // different targets for Blue or Red
       // the pitch can vary from -20 to +20 degrees.
       // make Drive vary from -2.0 to 2.0
-      fwdDrive = pitch / 10;
+      fwdDrive = -pitch / 10;
  
       if (fwdDrive > m_fwdLimit) // limit fwd drive
         fwdDrive = m_fwdLimit;
@@ -83,7 +89,7 @@ public class Drive2Bucket extends CommandBase {
      //   fwdDrive = 0.0; // stop
 
     }
-    m_driveTrain.drive(-fwdDrive, turnDrive);
+    m_driveTrain.drive(fwdDrive, turnDrive);
   }
 
 
