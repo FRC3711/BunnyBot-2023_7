@@ -43,7 +43,7 @@ public class Drive2Tag extends CommandBase {
     tagArea = 0;
     camera.setPipelineIndex(0); // pipeline 0=bucket
     fwdDrive = m_fwdLimit; // start at selected speed to start.
-    fidNumber = (int)SmartDashboard.getNumber( "Fiducial #", 2);  // %r6
+    fidNumber = (int)SmartDashboard.getNumber( "Tag #", 2);  // %r6
  //   SmartDashboard.pu.putNumber("fid1", fidNumber);
   }
 
