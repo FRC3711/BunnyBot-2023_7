@@ -44,7 +44,7 @@ public class Drive2Bucket extends CommandBase {
     camera.setPipelineIndex(0); // pipeline 0=bucket, 1=tag targeting
     LEDRing.set(true);
     fidNumber = (int)SmartDashboard.getNumber( "Tag #", 2);  // %r6
-    pitchTarget = -4;  // 4 degrees below center for Blue bucket.
+    pitchTarget = 0;  // need to be closer  -4;  // 4 degrees below center for Blue bucket.
     if (fidNumber >= 3)
       pitchTarget += 4;   // Red bucket 4 degrees higher than blue
   //  fwdDrive = m_fwdLimit; // start at selected speed to start.

@@ -44,7 +44,7 @@ public class AutonomousCommand extends CommandBase {
     double time = edu.wpi.first.wpilibj.Timer.getFPGATimestamp();
 
     if ((time - startTime) < 2.0)
-        m_driveTrain.drive(0.6, 0);  // fwd 2 sec
+        m_driveTrain.drive(0.7, 0);  // fwd 2 sec  faster
         else if ((time - startTime) < 3.0)
         m_driveTrain.drive(0, 0); // stop 1 sec
         else if ((time - startTime) < 5.0)

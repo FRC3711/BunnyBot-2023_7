@@ -1,4 +1,8 @@
 // bunnybot2023  Team 3711
+// 13-dec slowed feed from .3 to .28
+// changed auto1 times.
+// 13-dec V2023.75 added Turn2Home to turn left or right upon return in auto
+// raised pitchtarget to get closer to bucket
 // 3-dec added auto modes.  added pigeon-gyro (commented out)
 // 2-dec save from rod#6 test
 // 1-dec fixed shooter drive(speed) to 0.6
@@ -90,7 +94,7 @@ public class RobotContainer {
     // SmartDashboard.putData("Drive 2 Bucket", new Drive2Bucket(m_driveTrain, 0.5)); // try drive to target.
     
     //**************************************************************
-    SmartDashboard.putNumber("3711 bBot Rev ", 2023.73); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    SmartDashboard.putNumber("3711 bBot Rev ", 2023.75); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     SmartDashboard.putNumber("Tag #",2);  // 
     SmartDashboard.putData("PDP", m_pdp);
 
@@ -147,7 +151,7 @@ public class RobotContainer {
   final JoystickButton TestAutoButton = new JoystickButton(joystick, 8);
   TestAutoButton.whileTrue(new AutonomousCommand(m_driveTrain));    
   final JoystickButton BucketDriveButton = new JoystickButton(joystick, 9);
-  BucketDriveButton.whileTrue( new Drive2Bucket(m_driveTrain, 0.5));    
+  BucketDriveButton.whileTrue( new Drive2Bucket(m_driveTrain, 0.6));    
   final JoystickButton auto1Button = new JoystickButton(joystick, 10);
   auto1Button.whileTrue( new AutoSequence1(m_driveTrain, m_sweeper).withTimeout(11));    
   

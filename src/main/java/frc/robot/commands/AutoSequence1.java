@@ -27,12 +27,14 @@ public class AutoSequence1 extends SequentialCommandGroup {
         new SequentialCommandGroup(
             new Drive2Tag(m_driveSubsystem, 0.7).withTimeout(6), // drive up to tote.
             new ParallelCommandGroup(
-                new Drive4Time(m_driveSubsystem, .5, 0).withTimeout(1.8), // drive into tote, catch bunny
-                new Sweep(m_sweeperSubsystem, -0.6).withTimeout(1.8) // intake bunny if it fell in front
+                new Drive4Time(m_driveSubsystem, .5, 0).withTimeout(1.4), // drive into tote, catch bunny
+                new Sweep(m_sweeperSubsystem, -0.6).withTimeout(1.4) // intake bunny if it fell in front
             ),
-            new Drive4Time(m_driveSubsystem, -0.7, 0.0).withTimeout(3.5), // drive back toward home
-            new Drive4Time(m_driveSubsystem, 0, 0.7).withTimeout(1.2), // turn 180
-            new Drive4Time(m_driveSubsystem, 0.5, 0.0).withTimeout(2), // drive into home zone
+            new Drive4Time(m_driveSubsystem, -0.7, 0.0).withTimeout(3.7), // drive back toward home
+  //          new Drive4Time(m_driveSubsystem, 0, 0.7).withTimeout(1.2), // turn 180
+            // rotate clockwise if tag1 or tag3.  CounterClockwise if tag2 or tag4
+            new Turn2Home(m_driveSubsystem).withTimeout(1.0), // turn +160 or -160 degrees
+            new Drive4Time(m_driveSubsystem, 0.55, 0.0).withTimeout(2), // drive into home zone
             new ParallelCommandGroup(
               new Sweep(m_sweeperSubsystem, 0.6).withTimeout(2), // discharge bunny
               new Drive4Time(m_driveSubsystem, -0.5, 0.0).withTimeout(2) // back away from bunny

@@ -56,7 +56,7 @@ public class Feed extends CommandBase {
     @Override
     public void execute() {
         // throttle range -1 to 1 convert to 1/3 to 3/3
-        m_shooter.driveFeeder( 0.3);
+        m_shooter.driveFeeder( 0.28);
         }
 
     // Called once the command ends or is interrupted.
